@@ -76,7 +76,7 @@ const YtVideoAdmin = () => {
   };
 
   return (
-    <div className="px-6 pb-6">
+    <div className="py-6">
       <h1 className="text-center text-3xl font-bold mb-6">
         YouTube Video Admin
       </h1>

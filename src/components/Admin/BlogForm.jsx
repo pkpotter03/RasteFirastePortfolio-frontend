@@ -53,13 +53,13 @@ const BlogForm = ({ formData, onChange, onSubmit, editId }) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-3 mb-6">
+    <form onSubmit={onSubmit} className="space-y-3 mb-4">
       <input
         name="title"
         value={formData.title}
         onChange={onChange}
         placeholder="Title"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
       <input
@@ -67,7 +67,7 @@ const BlogForm = ({ formData, onChange, onSubmit, editId }) => {
         value={formData.subtitle}
         onChange={onChange}
         placeholder="Subtitle"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
       <input
@@ -75,42 +75,42 @@ const BlogForm = ({ formData, onChange, onSubmit, editId }) => {
         value={formData.placeNearBy}
         onChange={onChange}
         placeholder="Place Nearby"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
       />
       <input
         name="typeOfLocation"
         value={formData.typeOfLocation}
         onChange={onChange}
         placeholder="Type of Location"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
       />
       <textarea
         name="content"
         value={formData.content}
         onChange={onChange}
         placeholder="Content"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
       ></textarea>
       <input
         name="locationLink"
         value={formData.locationLink}
         onChange={onChange}
         placeholder="Location Link"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
       />
       <input
         name="igVideoLink"
         value={formData.igVideoLink}
         onChange={onChange}
         placeholder="Instagram Video Link"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
       />
       <input
         name="ytVideoLink"
         value={formData.ytVideoLink}
         onChange={onChange}
         placeholder="YouTube Video Link"
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
       />
 
       {/* Drag & Drop Zone */}

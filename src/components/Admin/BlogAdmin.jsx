@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BlogForm from "./BlogForm";
 import BlogList from "./BlogList";
+import Loader from "../Loader";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL + "/blogs";
 
@@ -19,7 +20,11 @@ const BlogAdmin = () => {
     images: [],
   });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+
   const [editId, setEditId] = useState(null);
+
 
   const fetchBlogs = async () => {
     try {
@@ -28,6 +33,7 @@ const BlogAdmin = () => {
       setBlogs(res.data);
     } catch (err) {
       console.error(err);
+      setError("Failed to fetch blogs");
     } finally {
       setLoading(false);
     }
@@ -69,8 +75,18 @@ const BlogAdmin = () => {
       }
       resetForm();
       fetchBlogs();
+      setSuccess("Blog saved successfully");
+      setError(null);
+      setTimeout(() => {
+        setSuccess(null);
+      }, 3000);
     } catch (err) {
       console.error(err);
+      setError("Failed to save blog");
+      setSuccess(null);
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
     } finally {
       setLoading(false);
     }
@@ -95,8 +111,18 @@ const BlogAdmin = () => {
     try {
       await axios.delete(`${API_BASE}/${id}`);
       fetchBlogs();
+      setSuccess("Blog deleted successfully");
+      setError(null);
+      setTimeout(() => {
+        setSuccess(null);
+      }, 3000);
     } catch (err) {
       console.error(err);
+      setError("Failed to delete blog");
+      setSuccess(null);
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
     }
   };
 
@@ -116,7 +142,7 @@ const BlogAdmin = () => {
   };
 
   return (
-    <div className="px-6 pb-6">
+    <div className="py-6">
       <h1 className="flex justify-self-center text-4xl font-bold mb-4">Blog Admin</h1>
       <BlogForm
         formData={formData}
@@ -125,7 +151,9 @@ const BlogAdmin = () => {
         editId={editId}
       />
 
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
+      {error && <p className="text-red-500 flex justify-self-center">{error}</p>}
+      {success && <p className="text-green-500 justify-self-center">{success}</p>}
 
       <BlogList
         blogs={blogs}
